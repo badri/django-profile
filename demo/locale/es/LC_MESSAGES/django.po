@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-14 09:15+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: demoprofile/models.py:7
+msgid "Female"
+msgstr "Mujer"
+
+#: demoprofile/models.py:7
+msgid "Male"
+msgstr "Hombre"
+
+#: templates/base.html:23
+msgid "Django profile demo"
+msgstr "Demo de Django profile"
+
+#: templates/base.html:24
+msgid "A django-profile demo application"
+msgstr "Una aplicación de demostración de django-profile"
+
+#: templates/base.html:28
+msgid "Frontpage"
+msgstr "Portada"
+
+#: templates/base.html:30
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/base.html:31
+msgid "Logout"
+msgstr "Salir"
+
+#: templates/base.html:33
+msgid "Login"
+msgstr "Entrar"
+
+#: templates/base.html:34
+msgid "Register"
+msgstr "Registrarse"
+
+#: templates/front.html:3
+msgid "Front page"
+msgstr "Portada"
+
+#: templates/front.html:6
+msgid "People who have already tried this demo"
+msgstr "Gente que ya ha probado esta demo"
+
+#: templates/userprofile/profile/personal.html:4
+#: templates/userprofile/profile/personal.html:23
+msgid "Edit your personal information"
+msgstr "Edita tu información personal"
+
+#: templates/userprofile/profile/personal.html:26
+msgid "Save"
+msgstr "Guardar"
+
+#: templates/userprofile/profile/personal.html:32
+msgid "Personal information"
+msgstr "Información personal"
+
+#: templates/userprofile/profile/personal.html:33
+msgid "Insert some information about you"
+msgstr "Añade algo de información acerca de ti"
+
+#~ msgid "If you don't have an account, you can"
+#~ msgstr "Si no tienes una cuenta, puedes"
+
+#~ msgid "sign up"
+#~ msgstr "registrarte"
+
+#~ msgid ""
+#~ "for one; it's free, and you could try this demo and publish your usercard."
+#~ msgstr ""
+#~ "y obtener una; es gratis, y podrás probar esta demo y publicar tu tarjeta "
+#~ "de presentación."

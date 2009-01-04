@@ -1,0 +1,53 @@
+{% load i18n %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ MEDIA_URL}}userprofile/css/blueprint/screen.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="{{ MEDIA_URL }}userprofile/css/blueprint/print.css" type="text/css" media="print" />
+		<link rel="stylesheet" href="{{ MEDIA_URL }}userprofile/css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
+		<!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL}}userprofile/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="{{ MEDIA_URL}}userprofile/css/django-profile.css" type="text/css" media="screen, projection" />
+		{% block extracss %}{% endblock %}
+
+		<script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/jquery-1.2.6.min.js"></script>
+		{% block extrajs %}{% endblock %}
+
+		<meta name="robots" content="{% block robots %}index,follow{% endblock %}" />
+</head>
+
+<body>
+	<div class="container">
+		<div id="header">
+			<div class="span-16">
+				<h1><a href="/"><strong>{% trans "Django profile demo" %}</strong></a></h1>
+				<p>{% trans "A django-profile demo application" %}</p>
+			</div>
+			<div class="span-8 last">
+				<ul class="hmenu large three">
+					<li><a href="/">{% trans "Frontpage" %}</a></li>
+					{% if user.is_authenticated %}
+					<li><a href="{% url profile_overview %}">{% trans "Profile" %}</a></li>
+   				<li><a href="{% url logout %}">{% trans "Logout" %}</a></li>
+					{% else %} 
+					<li><a href="{% url profile_overview %}">{% trans "Login" %}</a></li>
+					<li><a href="{% url signup %}">{% trans "Register" %}</a></li>
+  				{% endif %}
+				</ul>
+			</div>
+		</div>
+		<hr />
+
+  	{% if messages %}
+  	<ul id="messages" class="span-24 last" style="list-style: none;">
+    	{% for message in messages %}
+    	<li class="success" id="message_{{ forloop.counter }}"><a href="#" onclick="$('#message_{{ forloop.counter }}').fadeOut(); return false;"><small style="float: right;">{% trans "clear" %}</small></a> {{ message }}</li>
+    	{% endfor %}
+  	</ul>
+  	{% endif %}
+
+		{% block content %}{% endblock %}
+
+	</div>
+</body>
+</html>
