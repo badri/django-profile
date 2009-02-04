@@ -19,6 +19,7 @@ from userprofile.models import EmailValidation, Avatar, UserProfileMediaNotFound
 from django.template import RequestContext
 from django.conf import settings
 from xml.dom import minidom
+from utils import fileFilter
 import urllib2
 import random
 import cPickle as pickle
@@ -31,10 +32,10 @@ try:
 except ImportError:
     import Image
 
-if not settings.AUTH_PROFILE_MODULE:
+if not settings.JOBSEEKER_MODULE or not settings.RECRUITER_MODULE:
     raise SiteProfileNotAvailable
 try:
-    app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
+    app_label, model_name = settings.JOBSEEKER_MODULE.split('.')
     Profile = models.get_model(app_label, model_name)
 except (ImportError, ImproperlyConfigured):
     raise SiteProfileNotAvailable
@@ -90,6 +91,10 @@ def public(request, username):
     data = { 'profile': profile, 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
+def handle_uploaded_resume(f):
+    resume = os.path.join(settings.MEDIA_ROOT, 'foo/' + f.name)
+    return fileFilter.extractText(resume)
+
 @login_required
 def overview(request):
     """
@@ -122,10 +127,13 @@ def personal(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        form = ProfileForm(request.POST, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            form.save()
-            request.user.message_set.create(message=_("Your profile information has been updated successfully."))
+            new_profile = form.save(commit=False)
+	    new_profile.resume_text = handle_uploaded_resume(request.FILES['resume'])
+	    new_profile.save()
+	    form.save_m2m()
+            return HttpResponseRedirect(reverse("profile_edit_personal_done"))
     else:
         form = ProfileForm(instance=profile)
 

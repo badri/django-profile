@@ -20,8 +20,8 @@
 	<div class="container">
 		<div id="header">
 			<div class="span-16">
-				<h1><a href="/"><strong>{% trans "Django profile demo" %}</strong></a></h1>
-				<p>{% trans "A django-profile demo application" %}</p>
+				<h1><a href="/"><strong>Jobsite demo</strong></a></h1>
+				<p>// A jobsite demo</p>
 			</div>
 			<div class="span-8 last">
 				<ul class="hmenu large three">
@@ -30,8 +30,9 @@
 					<li><a href="{% url profile_overview %}">{% trans "Profile" %}</a></li>
    				<li><a href="{% url logout %}">{% trans "Logout" %}</a></li>
 					{% else %} 
-					<li><a href="{% url profile_overview %}">{% trans "Login" %}</a></li>
-					<li><a href="{% url signup %}">{% trans "Register" %}</a></li>
+					<li><a href="{% url slogin %}">Jobseeker Login</a></li>
+					<li><a href="{% url rlogin %}">Recruiter Login</a></li>
+					<li><a href="{% url signup %}">Register</a></li>
   				{% endif %}
 				</ul>
 			</div>

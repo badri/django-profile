@@ -1,5 +1,6 @@
 # Django settings for demo project.
 import os.path
+#import userprofile.models as Userprofile
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -29,7 +30,10 @@ TIME_ZONE = 'America/Chicago'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en'
 
-AUTH_PROFILE_MODULE = 'demoprofile.profile'
+AUTH_PROFILE_MODULE = 'userprofile.BaseProfile'
+JOBSEEKER_MODULE = 'demoprofile.Jobseeker'
+RECRUITER_MODULE = 'demoprofile.Recruiter'
+
 
 SITE_ID = 1
 
@@ -91,6 +95,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'userprofile',
     'demoprofile',
+    'utils.fileFilter',
+    #'utils.get_profile_alt',
 )
 
 # START of django-profile specific options

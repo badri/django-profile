@@ -43,9 +43,11 @@
     {# http://code.djangoproject.com/ticket/7239 #}
 		<a href="{% url password_reset %}">{% trans "Lost your password?" %}</a>
 		<br />
-		<a href="{% url email_validation_reset %}">{% trans "Resend validation e-mail" %}</a>
-    <br />
-		<a href="{% url signup %}">{% trans "Sign up!" %}</a>
+		<a href="{% url signup %}">Sign up!</a>
 		<br />
+		<br />
+		<br />
+	        <br />
+		<a href="{% url signup %}">Recruiter Sign up</a>
 	</div>
 {% endblock %}

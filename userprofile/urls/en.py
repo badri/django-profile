@@ -78,9 +78,13 @@ urlpatterns = patterns('',
         {'template_name': 'userprofile/account/password_reset_complete.html'},
         name="password_reset_complete"),
 
-    url(r'^login/$', 'django.contrib.auth.views.login',
+    url(r'^seeker/login/$', 'django.contrib.auth.views.login',
         {'template_name': 'userprofile/account/login.html'},
-        name='login'),
+        name='slogin'),
+
+    url(r'^recruiter/login/$', 'django.contrib.auth.views.login',
+        {'template_name': 'userprofile/account/login.html'},
+        name='rlogin'),
 
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'template_name': 'userprofile/account/logout.html'},
