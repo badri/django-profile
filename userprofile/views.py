@@ -1,3 +1,7 @@
+"""
+TODO:
+# write 2 separate registrations for Jobseekers and Recruiters
+"""
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse

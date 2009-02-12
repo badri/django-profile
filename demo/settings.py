@@ -1,6 +1,5 @@
 # Django settings for demo project.
 import os.path
-#import userprofile.models as Userprofile
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

@@ -1,3 +1,8 @@
+"""
+TODO:
+add exceptions similar to SiteProfileNotAvailable for JOBSEEKER_MODULE and RECRUITER_MODULE.
+"""
+
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ImproperlyConfigured
@@ -11,9 +16,17 @@ import mimetypes, urllib
 
 if not settings.AUTH_PROFILE_MODULE:
     raise SiteProfileNotAvailable
+
 try:
     app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
     Profile = models.get_model(app_label, model_name)
+
+    app_label, model_name = settings.JOBSEEKER_MODULE.split('.')
+    JobseekerProfile = models.get_model(app_label, model_name)
+
+    app_label, model_name = settings.RECRUITER_MODULE.split('.')
+    RecruiterProfile = models.get_model(app_label, model_name)
+
 except (ImportError, ImproperlyConfigured):
     raise SiteProfileNotAvailable
 
@@ -31,7 +44,11 @@ class ProfileForm(forms.ModelForm):
     Profile Form. Composed by all the Profile model fields.
     """
     class Meta:
-        model = Profile
+        if Profile.is_jobseeker:
+            model = JobseekerProfile
+        else:
+            model = RecruiterProfile
+            
         exclude = ('creation_date', 'location', 'latitude', 'longitude', 'country',
                    'user', 'public', 'site')
 

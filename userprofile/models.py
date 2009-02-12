@@ -44,6 +44,12 @@ class BaseProfile(models.Model):
     def get_absolute_url(self):
         return reverse("profile_public", args=[self.user])
 
+    def is_recruiter(self):
+        return False
+
+    def is_jobseeker(self):
+        return False
+
 
 class Avatar(models.Model):
     """

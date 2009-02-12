@@ -14,14 +14,14 @@ def get_rdf_path(instance, filename):
     return 'resumes/%s/rdf/%s' % (instance.user, filename)
 
 def get_original_format_path(instance, filename):
-    return 'resumes/%s/orig/%s' % (instance.user, filename)
+    return os.path.join(settings.MEDIA_ROOT, '/resumes/%s/orig/%s' % (instance.user, filename))
 
 GENDER_CHOICES = ( ('F', _('Female')), ('M', _('Male')),)
 
 class Resume(models.Model):
         'resume information.'
         # who owns the resume
-        user = models.CharField(max_length=50)
+        user = models.ForeignKey('Jobseeker', unique=True)
         # name of the current resume
         name = models.CharField(max_length=50)
         # usual resume tags
@@ -44,13 +44,15 @@ class Resume(models.Model):
                                  ("resume_is_public", "resume is available for\
                                   public view"),
                               )
-
+        def get_absoulte_url(self):
+            return "%i/%i" % (self.user, self.name)
+        
 class Jobseeker(BaseProfile):
         'person searching for jobs.'
         about = models.TextField(blank=True)
-        resumes = models.ManyToManyField(Resume)
-        def is_recruiter(self):
-                return False
+        resumes = models.ManyToManyField(Resume, blank=True)
+        def is_jobseeker(self):
+                return True
 
 class Recruiter(BaseProfile):
         'wades through a pile of resumes.'
