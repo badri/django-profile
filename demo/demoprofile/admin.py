@@ -8,21 +8,8 @@ class ProfileAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-
-class ResumeForm(forms.ModelForm):
-    class Meta:
-        model = Resume
-
-    def clean_resume_text(self):
-        cleaned_data = self.cleaned_data
-        return handle_uploaded_resume(cleaned_data.get('resume'))
-
-    def clean_name(self):
-        return 'foo'
-    
-
 class ResumeAdmin(admin.ModelAdmin):
-    form = ResumeForm
+    fields = ('user', 'resume')
         
         
 
