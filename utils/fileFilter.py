@@ -34,8 +34,7 @@ def extractTextFromPdf(f):
 
 def extractTextFromDoc(f):
 	'''
-	MS word files are converted to txt by using antiword program. works for '
-	most cases.
+	MS word files are converted to txt by using antiword program. works for most cases.
 	'''
 	str = os.popen("antiword "+ f).read()
 	# process p
