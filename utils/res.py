@@ -2,6 +2,9 @@
 from pyparsing import *
 import sys, re
 import codecs
+
+from elementtree import ElementTree as ET
+
 usage = """\
 ./res.py <filename>.txt
 """
@@ -36,7 +39,9 @@ class ResumeParser:
         self.certifTag = ""
         self.refTag = ""
 
-
+        # contains catchwords
+        self.root = ET.parse('keywords.xml').getroot()
+        
         # open the resume
         file_obj = open(resume)
         _whole_test = file_obj.read()
@@ -81,39 +86,40 @@ class ResumeParser:
         text.setParseAction(self.tagifyOther)
         
         # parsing grammar - ends here
+        
         # setDebug(True) # if you want to see how the text is parsed
-        eduRe = re.compile(r"""\n(Education|Educational Qualification|Educational Background|\
-                              Qualification|Summary of Qualification|Qualifications|\
-                              Summary of Qualifications|Education & Training|Academic Background)""", re.IGNORECASE)
+        
+        edu_keywords = self.returnKeywords('education')
+        eduRe = re.compile(r'\n('+edu_keywords+')', re.IGNORECASE)
         edu_whole_test = eduRe.sub('-EDUCATION-',_whole_test)
 
-        skillRe = re.compile(r"""\n(Skill|Skillsets|Skill Sets|Skills|Skill|\
-                                 Specialization|Specialisation|Specializations|Specializations|\
-                                 Abilities|Technical Summary|Technical Qualifications|Technical Proficiency|\
-                                 Computer Proficiency|Computer Skills|Professional Skills|Relevant Skills|\
-                                 Exposure|IT Exposure|Technical Skills)""", re.IGNORECASE)
+        skill_keywords = self.returnKeywords('skills')
+        skillRe = re.compile(r'\n('+skill_keywords+')', re.IGNORECASE)
         skill_whole_test = skillRe.sub('-SKILLS-', edu_whole_test)
 
-        expRe = re.compile(r"""\n(Experience|Professional Experience|Work Experience|\
-                                 Employment History|Career History|Background|\
-                                 Projects|Employment|Professional Background|Working Experience|\
-                                 Academic Projects|Projects Handled|Project Details)""", re.IGNORECASE)
+        exp_keywords = self.returnKeywords('experience')
+        expRe = re.compile(r'\n('+exp_keywords+')', re.IGNORECASE)
         exp_whole_test = expRe.sub('-EXPERIENCE-', skill_whole_test)
 
-        objRe = re.compile(r"""\n(Career Objective|Objective|Job Objective)""", re.IGNORECASE)
+        obj_keywords = self.returnKeywords('objective')
+        objRe = re.compile(r'\n('+obj_keywords+')', re.IGNORECASE)
         obj_whole_test = objRe.sub('-OBJECTIVE-', exp_whole_test)
 
-        personalRe = re.compile(r"""\n(Personal Details|Personal Information|Personal|About Me|\
-                                       Strengths|Personal Profile)""", re.IGNORECASE)
+        personal_keywords = self.returnKeywords('personal')
+        personalRe = re.compile(r'\n('+personal_keywords+')', re.IGNORECASE)
         pers_whole_test = personalRe.sub('-PERSONAL-', obj_whole_test)
 
-        interestRe = re.compile(r"""\n(Personal Interests|Hobbies|Activities|Interests|Other Interests)""", re.IGNORECASE)
+        interest_keywords = self.returnKeywords('interests')
+        interestRe = re.compile(r'\n('+interest_keywords+')', re.IGNORECASE)
         interest_whole_test = interestRe.sub('-INTERESTS-', pers_whole_test)
 
-        certifRe = re.compile(r"""\n(Certifications|Honours|Honors|Awards|Prizes|Achievements|Accomplishments)""", re.IGNORECASE)
+        certif_keywords = self.returnKeywords('certifications')
+        certifRe = re.compile(r'\n('+certif_keywords+')', re.IGNORECASE)
         certif_whole_test = certifRe.sub('-CERTIF-', interest_whole_test)
 
-        refRe = re.compile(r"""\nReferences""", re.IGNORECASE)
+        ref_keywords = self.returnKeywords('references')
+        refRe = re.compile(r'\n('+ref_keywords+')', re.IGNORECASE)
+        
         whole_test = refRe.sub('-REF-', certif_whole_test)
 
         doc.parseString(whole_test)
@@ -153,9 +159,7 @@ class ResumeParser:
     def tagifyReferences(self, st, locn, toks):
         self.refTag += toks[1]
 
-
     # exposed methods which will be used.
-    # TODO: convert each of these into a python property builtin
     @property
     def education(self):
         return self.eduTag
@@ -188,11 +192,21 @@ class ResumeParser:
     def references(self):
         return self.refTag
 
-"""
+    def returnKeywords(self, attribute):
+        keywords = ''
+        for x in self.root.getiterator(attribute):
+            for word in x.text.strip().split('\n'):
+                keywords+=word+'|'
+
+        return keywords[:-1]
+        
+
+#"""
 p = ResumeParser(sys.argv[1])
 
 print p.skills
 
 print p.personal
 
-"""
+print p.education
+#"""

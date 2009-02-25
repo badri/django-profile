@@ -25,11 +25,11 @@ class Resume(models.Model):
         # name of the current resume
         name = models.CharField(max_length=50)
         # usual resume tags
-        education = models.TextField()
+        education = models.TextField(blank = True)
         objective = models.TextField(blank = True)
-        skills = models.TextField()
-        personal = models.TextField()
-        experience = models.TextField()
+        skills = models.TextField(blank = True)
+        personal = models.TextField(blank = True)
+        experience = models.TextField(blank = True)
         interests = models.TextField(blank = True)
         certifications = models.TextField(blank = True)
         references = models.TextField(blank = True) 
