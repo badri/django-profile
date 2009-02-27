@@ -7,12 +7,13 @@ TODO:
 # add more doc formats like html, rtf, openoffice etc
 # handle all exceptions
 # make sure we have doc or pdf headers to prevent storing of malformed input
+# warning: all file handlers are django file objects, not python file objects.
 badri.dilbert@gmail.com
 '''
 
 def extractText(f):
 	'generic function which will call appropriate extractor depending on file ext.'
-	fileName, ext = os.path.splitext(f)
+	fileName, ext = os.path.splitext(f.name)
 	if ext == '.pdf':
 		return extractTextFromPdf(f)
 	elif ext == '.doc':
@@ -42,7 +43,8 @@ def extractTextFromDoc(f):
 
 def extractTextFromTxt(f):
 	'plain txt files.'
-	inputf = open(f)
-	str = inputf.read()
-	inputf.close()
-	return str
+	#inputf = open(f)
+	#str = inputf.read()
+	#inputf.close()
+	#return str
+        return f.read()

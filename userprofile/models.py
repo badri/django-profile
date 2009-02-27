@@ -39,7 +39,7 @@ class BaseProfile(models.Model):
         return Avatar.objects.filter(user=self.user, valid=True).count()
 
     def __unicode__(self):
-        return _("%s's profile") % self.user
+        return _("%s") % self.user
 
     def get_absolute_url(self):
         return reverse("profile_public", args=[self.user])

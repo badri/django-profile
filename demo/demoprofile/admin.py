@@ -15,5 +15,6 @@ class ResumeAdmin(admin.ModelAdmin):
 
 #admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Jobseeker)
-admin.site.register(Resume, ResumeAdmin)
+#admin.site.register(Resume, ResumeAdmin)
+admin.site.register(Resume)
 admin.site.register(Recruiter)

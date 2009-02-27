@@ -8,7 +8,9 @@ from elementtree import ElementTree as ET
 usage = """\
 ./res.py <filename>.txt
 """
+
 """
+TODO:
 # from a given resume, extract only educational info - done
 # from edu info, extract only a list of shools or colleges
 	- have an xml file for key terms for schools and colleges. Ex: for school - sch, school, secondary, for college - university, institution, insitute, univ etc
@@ -22,9 +24,6 @@ usage = """\
 
 """
 
-if len(sys.argv) < 2:
-	print usage
-	sys.exit()
 
 class ResumeParser:
     def __init__(self, resume):
@@ -40,11 +39,10 @@ class ResumeParser:
         self.refTag = ""
 
         # contains catchwords
-        self.root = ET.parse('keywords.xml').getroot()
+        self.root = ET.parse('/opt/git-repos/django-profile/media/keywords.xml').getroot()
         
         # open the resume
-        file_obj = open(resume)
-        _whole_test = file_obj.read()
+        _whole_test = resume
 
         objBlock = Literal("-OBJECTIVE-")
         persBlock = Literal("-PERSONAL-")
@@ -162,35 +160,35 @@ class ResumeParser:
     # exposed methods which will be used.
     @property
     def education(self):
-        return self.eduTag
+        return self.eduTag.strip()
 
     @property
     def objective(self):
-        return self.objTag
+        return self.objTag.strip()
 
     @property
     def skills(self):
-        return self.skillTag
+        return self.skillTag.strip()
 
     @property
     def personal(self):
-        return self.personalTag
+        return self.personalTag.strip()
 
     @property
     def experience(self):
-        return self.experience
+        return self.experienceTag.strip()
 
     @property
     def interests(self):
-        return self.interestTag
+        return self.interestTag.strip()
 
     @property
     def certifications(self):
-        return self.certifTag
+        return self.certifTag.strip()
 
     @property
     def references(self):
-        return self.refTag
+        return self.refTag.strip()
 
     def returnKeywords(self, attribute):
         keywords = ''
@@ -201,12 +199,18 @@ class ResumeParser:
         return keywords[:-1]
         
 
-#"""
-p = ResumeParser(sys.argv[1])
+if __name__=='__main__':
 
-print p.skills
+    if len(sys.argv) < 2:
+	print usage
+	sys.exit()
 
-print p.personal
+    print sys.argv
 
-print p.education
-#"""
+    p = ResumeParser(open(sys.argv[1]).read())
+
+    print p.skills
+
+    print p.personal
+
+    print p.education

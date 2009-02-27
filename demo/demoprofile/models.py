@@ -4,17 +4,21 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 import datetime
 
+from utils.fileFilter import extractText
+from utils.res import ResumeParser
+import os
+
 """
 TODO:
 # user can have many resumes 
 # user can cater many different profiles.
 # why are we storing files in different formats instead of generating them on demand?
+# each resume must have a name
 """
 def get_rdf_path(instance, filename):
-    return 'resumes/%s/rdf/%s' % (instance.user, filename)
+    print "inside get_rdf_path"+filename
+    return 'resumes/%s/%s' % (instance.user, filename)
 
-def get_original_format_path(instance, filename):
-    return os.path.join(settings.MEDIA_ROOT, '/resumes/%s/orig/%s' % (instance.user, filename))
 
 GENDER_CHOICES = ( ('F', _('Female')), ('M', _('Male')),)
 
@@ -36,9 +40,13 @@ class Resume(models.Model):
         # resume in an RDF format
         rdf_file = models.FileField(upload_to=get_rdf_path, blank=True)
         # the original file format supplied by the user
-        resume = models.FileField(upload_to=get_original_format_path, blank=True)
+        resume = models.FileField(upload_to=get_rdf_path, blank=True)
         # text form of resume, will be removed in future versions`
         resume_text = models.TextField(blank=True)
+
+        def __unicode__(self):
+            return u"%s" % (self.name)
+        
         class Meta:
                 permissions = (
                                  ("resume_is_public", "resume is available for\
@@ -46,6 +54,18 @@ class Resume(models.Model):
                               )
         def get_absoulte_url(self):
             return "%i/%i" % (self.user, self.name)
+
+        def save(self, force_insert=False, force_update=False):
+            fieldset = ResumeParser(extractText(self.resume))
+            self.education = fieldset.education
+            self.objective = fieldset.objective
+            self.experience = fieldset.experience
+            self.skills = fieldset.skills
+            self.personal = fieldset.personal
+            self.certifications = fieldset.certifications
+            self.references = fieldset.references
+            super(Resume, self).save(force_insert, force_update)
+            
         
 class Jobseeker(BaseProfile):
         'person searching for jobs.'
