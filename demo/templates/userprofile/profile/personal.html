@@ -23,6 +23,11 @@
 		<legend>{% trans "Edit your personal information" %}</legend>
 		{{ form.as_p }}	
 	</fieldset>
+	<ul>
+	{% for each_resume in resumes %}
+	<li><a href="{% url resume_public each_resume.user each_resume.name %}">{{ each_resume }}</a></li>
+	{% endfor %}
+	</ul>
 	<input type="submit" value="{% trans 'Save' %}" />
 	</form>
 {% endblock %}

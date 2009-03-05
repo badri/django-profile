@@ -69,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
+    'demo.middleware.threadlocals.ThreadLocals',
 )
 
 ROOT_URLCONF = 'demo.urls'

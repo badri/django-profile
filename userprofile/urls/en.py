@@ -104,5 +104,6 @@ urlpatterns = patterns('',
 
     # Users public profile
     url(r'^profile/(?P<username>.+)/$', public, name='profile_public'),
+    url(r'^(?P<username>.+)/(?P<resumename>.+)/$', resume, name='resume_public'),
 
 )

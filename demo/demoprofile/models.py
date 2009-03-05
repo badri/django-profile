@@ -8,6 +8,9 @@ from utils.fileFilter import extractText
 from utils.res import ResumeParser
 import os
 
+from demo.middleware import threadlocals
+from django.contrib.auth.models import User
+
 """
 TODO:
 # user can have many resumes 
@@ -25,7 +28,7 @@ GENDER_CHOICES = ( ('F', _('Female')), ('M', _('Male')),)
 class Resume(models.Model):
         'resume information.'
         # who owns the resume
-        user = models.ForeignKey('Jobseeker', unique=True)
+        user = models.ForeignKey('Jobseeker')
         # name of the current resume
         name = models.CharField(max_length=50)
         # usual resume tags
@@ -52,9 +55,13 @@ class Resume(models.Model):
                                  ("resume_is_public", "resume is available for\
                                   public view"),
                               )
+        @models.permalink
         def get_absoulte_url(self):
-            return "%i/%i" % (self.user, self.name)
+            return ('resume', (), {
+                'username': self.user,
+                'resumename': self.name})
 
+        
         def save(self, force_insert=False, force_update=False):
             fieldset = ResumeParser(extractText(self.resume))
             self.education = fieldset.education
@@ -66,11 +73,13 @@ class Resume(models.Model):
             self.references = fieldset.references
             super(Resume, self).save(force_insert, force_update)
             
+    
         
 class Jobseeker(BaseProfile):
         'person searching for jobs.'
         about = models.TextField(blank=True)
-        resumes = models.ManyToManyField(Resume, blank=True)
+        # resumes = models.ManyToManyField(Resume, limit_choices_to={'user':threadlocals.get_current_user()}, blank=True)
+        # resumes = models.ManyToManyField(Resume, blank=True)
         def is_jobseeker(self):
                 return True
 

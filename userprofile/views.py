@@ -24,6 +24,9 @@ from django.template import RequestContext
 from django.conf import settings
 from xml.dom import minidom
 from utils import fileFilter
+
+from demo.demoprofile.models import Resume
+
 import urllib2
 import random
 import cPickle as pickle
@@ -85,6 +88,20 @@ def fetch_geodata(request, lat, lng):
     else:
         raise Http404()
 
+def resume(request, username, resumename):
+    try:
+        print "foo"
+        print username, resumename
+        t = Resume.objects.filter(user__user__username=username).filter(name=resumename).get()
+        print t
+        print t.resume_text
+    except:
+        raise Http404
+    
+    template = "userprofile/profile/resume.html"
+    data = { 'resume':t, }
+    return render_to_response(template, data, context_instance=RequestContext(request))
+
 def public(request, username):
     try:
         profile = User.objects.get(username=username).get_profile()
@@ -129,12 +146,13 @@ def personal(request):
     Personal data of the user profile
     """
     profile, created = Profile.objects.get_or_create(user=request.user)
+    resumes = Resume.objects.all().filter(user=request.user)
 
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             new_profile = form.save(commit=False)
-	    new_profile.resume_text = handle_uploaded_resume(request.FILES['resume'])
+	    # new_profile.resume_text = handle_uploaded_resume(request.FILES['resume'])
 	    new_profile.save()
 	    form.save_m2m()
             return HttpResponseRedirect(reverse("profile_edit_personal_done"))
@@ -143,7 +161,7 @@ def personal(request):
 
     template = "userprofile/profile/personal.html"
     data = { 'section': 'personal', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
-             'form': form, }
+             'form': form, 'resumes': resumes, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 @login_required

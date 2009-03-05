@@ -9,12 +9,9 @@
 {% endblock %}
 
 {% block extrajs %}
-<script type="text/javascript">
-	$(function() {
-		$("input[type='text']").addClass("text");
-		$("form input")[0].focus();
-	});
-</script>
+<script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/ui.datepicker.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/jquery.personal.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/jquery.jeditable.js"></script>
 {% endblock %}
 
 {% block userprofile_navigation %}
@@ -22,17 +19,14 @@
 {% endblock %}
 
 {% block userprofile_content %}
-	<form class="personal" action="{{ request.path_info }}" method="post" enctype="multipart/form-data">
-	<fieldset>
-		<legend>{% trans "Edit your personal information" %}</legend>
-		{{ form.as_p }}
-		<p> f </p>
-		{% for each_resume in resumes %}
-		<p>{{ each_resume }}</p>
-		{% endfor %}
-	</fieldset>
-  <input type="submit" value="{% trans 'Save' %}" />
-	</form>
+	<!--div class="edit" id="resume_content"> {{ resume.resume_text }} </div-->
+	<div class="edit" id="resume_content"> {{ resume.name }} </div>
+	<p> {{ resume.objective }} </p>
+	<p> {{ resume.interests }} </p>
+	<p> {{ resume.experience }} </p>
+	<p> {{ resume.education }} </p>
+	<p> {{ resume.skills }} </p>
+	<p> {{ resume.personal }} </p>
 {% endblock %}
 
 {% block userprofile_content_related %}
@@ -41,4 +35,3 @@
     <p>{% trans "Insert some information about you" %}.</p>
   </div>
 {% endblock %}
-

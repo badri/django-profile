@@ -3,7 +3,7 @@
 <div id="nav" class="span-24 last">
 	<ul class="hmenu">
 		<li{% ifequal section "overview" %} class="active"{% endifequal %}><a href="{% url profile_overview %}">Overview</a></li>
-		<li{% ifequal section "personal" %} class="active"{% endifequal %}><a href="{% url profile_edit_personal %}">Upload your resume</a></li>
+		<li{% ifequal section "personal" %} class="active"{% endifequal %}><a href="{% url profile_edit_personal %}">Edit profile</a></li>
 		<li{% ifequal section "delete" %} class="active"{% endifequal %}><a href="{% url profile_delete %}">Remove profile</a></li>
 	</ul>
 	<hr class="space" />
