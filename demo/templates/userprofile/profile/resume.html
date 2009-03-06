@@ -11,7 +11,20 @@
 {% block extrajs %}
 <script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/ui.datepicker.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/jquery.personal.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}userprofile/js/jquery.jeditable.js"></script>
+<script type="text/javascript">
+$(function() {
+        
+  $(".editable_textarea").editable("http://www.appelsiini.net/projects/jeditable/php/save.php", { 
+      type   : 'textarea',
+      submitdata: { _method: "put" },
+      select : true,
+      submit : 'OK',
+      cancel : 'cancel'
+  });
+});
+</script>
 {% endblock %}
 
 {% block userprofile_navigation %}
@@ -19,19 +32,13 @@
 {% endblock %}
 
 {% block userprofile_content %}
-	<!--div class="edit" id="resume_content"> {{ resume.resume_text }} </div-->
-	<div class="edit" id="resume_content"> {{ resume.name }} </div>
-	<p> {{ resume.objective }} </p>
-	<p> {{ resume.interests }} </p>
-	<p> {{ resume.experience }} </p>
-	<p> {{ resume.education }} </p>
-	<p> {{ resume.skills }} </p>
-	<p> {{ resume.personal }} </p>
+	<p class="editable_textarea" id="paragraph_1" style="width: 500px"> {{ resume.resume_text }} </p>
 {% endblock %}
 
 {% block userprofile_content_related %}
   <div class="box">
-    <h3>{% trans "Personal information" %}</h3>
-    <p>{% trans "Insert some information about you" %}.</p>
+    <h3>{{ resume.name }}</h3>
+    <p>{% trans "click the resume text to edit" %}.</p>
+    <a href="{% url profile_edit_personal %}">Go Back</a>
   </div>
 {% endblock %}

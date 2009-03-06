@@ -63,7 +63,8 @@ class Resume(models.Model):
 
         
         def save(self, force_insert=False, force_update=False):
-            fieldset = ResumeParser(extractText(self.resume))
+            self.resume_text = extractText(self.resume)
+            fieldset = ResumeParser(self.resume_text)
             self.education = fieldset.education
             self.objective = fieldset.objective
             self.experience = fieldset.experience
