@@ -110,3 +110,5 @@ GOOGLE_MAPS_API_KEY = "ABQIAAAA06IJoYHDPFMx4u3hTtaghxTpH3CbXHjuCVmaTc5MkkU4wO1RR
 REQUIRE_EMAIL_CONFIRMATION = False
 #GEOIP_PATH = "%s/db/" % PROJECT_PATH
 # END of django-profile specific options
+
+KEYWORDS_XML = '/opt/git-repos/django-profile/media/keywords.xml'

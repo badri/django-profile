@@ -88,18 +88,24 @@ def fetch_geodata(request, lat, lng):
     else:
         raise Http404()
 
-def resume(request, username, resumename):
+def resume(request, username, resumename, resume_obj=None):
     try:
-        print "foo"
-        print username, resumename
-        t = Resume.objects.filter(user__user__username=username).filter(name=resumename).get()
-        print t
-        print t.resume_text
+        resume_obj = Resume.objects.filter(user__user__username=username).filter(name=resumename).get()
     except:
         raise Http404
-    
-    template = "userprofile/profile/resume.html"
-    data = { 'resume':t, }
+
+    if request.method == "POST":
+        resume_text = request.POST.get('value', '').strip()
+        print resume_text
+        if resume_text == '':
+            return HttpResponse(u'')
+        resume_obj.resume_text = resume_text
+        resume_obj.save(force_update=True)
+        
+    else:
+        template = "userprofile/profile/resume.html"
+
+    data = { 'resume':resume_obj, }        
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 def public(request, username):

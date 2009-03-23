@@ -4,6 +4,7 @@ import sys, re
 import codecs
 
 from elementtree import ElementTree as ET
+from demo.settings import KEYWORDS_XML
 
 usage = """\
 ./res.py <filename>.txt
@@ -11,8 +12,8 @@ usage = """\
 
 """
 TODO:
-# from a given resume, extract only educational info - done
-# from edu info, extract only a list of shools or colleges
+1. from a given resume, extract only educational info - done
+2. from edu info, extract only a list of shools or colleges
 	- have an xml file for key terms for schools and colleges. Ex: for school - sch, school, secondary, for college - university, institution, insitute, univ etc
 
 	- a script which will use the terms, look into the user data and extract the information
@@ -21,6 +22,8 @@ TODO:
 	- dynamically create your attribute file in flamenco.
  Publications
  Internships
+ 3. add a settings variable for keywords.xml - done
+ 4. add filter.xml in accordance with requirement #2.
 
 """
 
@@ -39,7 +42,7 @@ class ResumeParser:
         self.refTag = ""
 
         # contains catchwords
-        self.root = ET.parse('/opt/git-repos/django-profile/media/keywords.xml').getroot()
+        self.root = ET.parse(KEYWORDS_XML).getroot()
         
         # open the resume
         _whole_test = resume

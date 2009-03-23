@@ -9,9 +9,24 @@ urlpatterns = patterns('',
 
     url(r'^profile/edit/location/$', location, name='profile_edit_location'),
 
+    url(r'^profile/edit/location/done/$', direct_to_template,
+        {'extra_context': {'section': 'location'},
+        'template': 'userprofile/profile/location_done.html'},
+        name='profile_edit_location_done'),
+
     url(r'^profile/edit/personal/$', personal, name='profile_edit_personal'),
 
+    url(r'^profile/edit/personal/done/$', direct_to_template,
+        {'extra_context': {'section': 'personal'},
+        'template': 'userprofile/profile/personal_done.html'},
+        name='profile_edit_personal_done'),
+
     url(r'^profile/delete/$', delete, name='profile_delete'),
+
+    url(r'^profile/delete/done/$', direct_to_template,
+        {'extra_context': {'section': 'delete'},
+        'template': 'userprofile/profile/delete_done.html'},
+        name='profile_delete_done'),
 
     url(r'^profile/getcountry_info/(?P<lat>[0-9\.\-]+)/(?P<lng>[0-9\.\-]+)/$',
         fetch_geodata,
