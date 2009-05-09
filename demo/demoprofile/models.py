@@ -10,6 +10,7 @@ import os
 
 from demo.middleware import threadlocals
 from django.contrib.auth.models import User
+            
 
 """
 TODO:
@@ -19,7 +20,6 @@ TODO:
 # each resume must have a name
 """
 def get_rdf_path(instance, filename):
-    print "inside get_rdf_path"+filename
     return 'resumes/%s/%s' % (instance.user, filename)
 
 
@@ -55,12 +55,12 @@ class Resume(models.Model):
                                  ("resume_is_public", "resume is available for\
                                   public view"),
                               )
-        @models.permalink
-        def get_absoulte_url(self):
-            return ('resume', (), {
-                'username': self.user,
-                'resumename': self.name})
 
+        @models.permalink
+        def get_absolute_url(self):
+            return ('resume_public', (), {
+                'username': self.user.user.username,
+                'resumename': self.name})
         
         def save(self, force_insert=False, force_update=False):
             if not force_update:

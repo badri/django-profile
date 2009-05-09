@@ -31,15 +31,15 @@ TODO:
 class ResumeParser:
     def __init__(self, resume):
 
-        self.idTag =  ""
-        self.eduTag = ""
-        self.objTag = ""
-        self.skillTag = ""
-        self.personalTag = ""
-        self.experienceTag = ""
-        self.interestTag = ""
-        self.certifTag = ""
-        self.refTag = ""
+        self.idTag =  u""
+        self.eduTag = u""
+        self.objTag = u""
+        self.skillTag = u""
+        self.personalTag = u""
+        self.experienceTag = u""
+        self.interestTag = u""
+        self.certifTag = u""
+        self.refTag = u""
 
         # contains catchwords
         self.root = ET.parse(KEYWORDS_XML).getroot()
@@ -91,35 +91,37 @@ class ResumeParser:
         # setDebug(True) # if you want to see how the text is parsed
         
         edu_keywords = self.returnKeywords('education')
-        eduRe = re.compile(r'\n('+edu_keywords+')', re.IGNORECASE)
+        eduRe = re.compile(r'(\s)*('+edu_keywords+')', re.IGNORECASE)
         edu_whole_test = eduRe.sub('-EDUCATION-',_whole_test)
+        print edu_keywords
+        print edu_whole_test
 
         skill_keywords = self.returnKeywords('skills')
-        skillRe = re.compile(r'\n('+skill_keywords+')', re.IGNORECASE)
+        skillRe = re.compile(r'(\s)*('+skill_keywords+')', re.IGNORECASE)
         skill_whole_test = skillRe.sub('-SKILLS-', edu_whole_test)
 
         exp_keywords = self.returnKeywords('experience')
-        expRe = re.compile(r'\n('+exp_keywords+')', re.IGNORECASE)
+        expRe = re.compile(r'(\s)*('+exp_keywords+')', re.IGNORECASE)
         exp_whole_test = expRe.sub('-EXPERIENCE-', skill_whole_test)
 
         obj_keywords = self.returnKeywords('objective')
-        objRe = re.compile(r'\n('+obj_keywords+')', re.IGNORECASE)
+        objRe = re.compile(r'(\s)*('+obj_keywords+')', re.IGNORECASE)
         obj_whole_test = objRe.sub('-OBJECTIVE-', exp_whole_test)
 
         personal_keywords = self.returnKeywords('personal')
-        personalRe = re.compile(r'\n('+personal_keywords+')', re.IGNORECASE)
+        personalRe = re.compile(r'(\s)*('+personal_keywords+')', re.IGNORECASE)
         pers_whole_test = personalRe.sub('-PERSONAL-', obj_whole_test)
 
         interest_keywords = self.returnKeywords('interests')
-        interestRe = re.compile(r'\n('+interest_keywords+')', re.IGNORECASE)
+        interestRe = re.compile(r'(\s)*('+interest_keywords+')', re.IGNORECASE)
         interest_whole_test = interestRe.sub('-INTERESTS-', pers_whole_test)
 
         certif_keywords = self.returnKeywords('certifications')
-        certifRe = re.compile(r'\n('+certif_keywords+')', re.IGNORECASE)
+        certifRe = re.compile(r'(\s)*('+certif_keywords+')', re.IGNORECASE)
         certif_whole_test = certifRe.sub('-CERTIF-', interest_whole_test)
 
         ref_keywords = self.returnKeywords('references')
-        refRe = re.compile(r'\n('+ref_keywords+')', re.IGNORECASE)
+        refRe = re.compile(r'(\s)*('+ref_keywords+')', re.IGNORECASE)
         
         whole_test = refRe.sub('-REF-', certif_whole_test)
 
@@ -208,12 +210,10 @@ if __name__=='__main__':
 	print usage
 	sys.exit()
 
-    print sys.argv
-
     p = ResumeParser(open(sys.argv[1]).read())
 
-    print p.skills
+    #print p.skills
 
-    print p.personal
+    #print p.personal
 
-    print p.education
+    #print p.education

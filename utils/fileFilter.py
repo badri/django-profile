@@ -52,7 +52,12 @@ def extractTextFromTxt(f):
 	#str = inputf.read()
 	#inputf.close()
 	#return str
-        return f.read()
+        from tempfile import NamedTemporaryFile
+        destination = NamedTemporaryFile()
+        destination.write(f.read())
+        import codecs
+        str = codecs.open(destination.name, 'r', 'utf-8', 'ignore')
+        return str.read()
 
 
 tests = r"""

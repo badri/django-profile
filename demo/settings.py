@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'solango',
     'userprofile',
     'demoprofile',
     'utils.fileFilter',
@@ -112,3 +113,15 @@ REQUIRE_EMAIL_CONFIRMATION = False
 # END of django-profile specific options
 
 KEYWORDS_XML = '/opt/git-repos/django-profile/media/keywords.xml'
+
+# solango specifics
+SOLR_ROOT =  '/home/badri/utils/apache-solr-1.3.0/example/'
+SOLR_SCHEMA_PATH = SOLR_ROOT + 'solr/conf/schema.xml'
+SOLR_DATA_DIR = SOLR_ROOT + 'solr/data'
+TEST_RUNNER='solango.tests.run_tests'
+SEARCH_FACET_PARAMS = [
+    ("facet", "true"),             # basic faceting
+    ("facet.field", "model"),      # on type
+    ("facet.field", "education"), 
+]
+
