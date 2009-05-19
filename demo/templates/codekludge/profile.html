@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+<title>codekludge</title>
+<link rel="stylesheet" href="template_files/snippets.css" type="text/css">
+<link rel="stylesheet" href="template_files/pygments.css" type="text/css">
+
+<!-- <link rel="stylesheet" href="template_files/wmd.css" type="text/css"> -->
+<!-- <script type="text/javascript" src="template_files/jquery-1.2.6.min.js"></script> -->
+<!-- <script type="text/javascript" src="template_files/com.cnprog.editor.js"></script> -->
+<!-- <script type="text/javascript" src="template_files/showdown-min.js"></script> -->
+
+<script src="template_files/jquery-1.2.6.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="template_files/jquery.jeditable.js"></script>
+<script type="text/javascript">
+$(function() {
+        
+  $(".editable_textarea").editable("#", { 
+      type   : 'textarea',
+      submitdata: { _method: "put" },
+      select : true,
+      submit : 'OK',
+      cancel : 'cancel'
+  });
+});
+</script>
+
+<link rel="alternate" href="http://www.djangosnippets.org/feeds/latest/" type="application/atom+xml" title="Feed of latest snippets">
+
+<style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+
+.firebugHighlight {
+    z-index: 2147483647;
+    position: absolute;
+    background-color: #3875d7;
+}
+
+.firebugLayoutBoxParent {
+    z-index: 2147483647;
+    position: absolute;
+    background-color: transparent;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.firebugRulerH {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    background: url(chrome://firebug/skin/rulerH.png) repeat-x;
+    border-top: 1px solid #BBBBBB;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px solid #000000;
+}
+
+.firebugRulerV {
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 14px;
+    height: 100%;
+    background: url(chrome://firebug/skin/rulerV.png) repeat-y;
+    border-left: 1px solid #BBBBBB;
+    border-right: 1px solid #000000;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.firebugLayoutBoxOffset {
+    z-index: 2147483647;
+    position: absolute;
+    opacity: 0.8;
+}
+
+.firebugLayoutBoxMargin {
+    background-color: #EDFF64;
+}
+
+.firebugLayoutBoxBorder {
+    background-color: #666666;
+}
+
+.firebugLayoutBoxPadding {
+    background-color: SlateBlue;
+}
+
+.firebugLayoutBoxContent {
+    background-color: SkyBlue;
+}
+
+/*.firebugHighlightGroup .firebugLayoutBox {
+    background-color: transparent;
+}
+
+.firebugHighlightBox {
+    background-color: Blue !important;
+}*/
+
+.firebugLayoutLine {
+    z-index: 2147483647;
+    background-color: #000000;
+    opacity: 0.4;
+}
+
+.firebugLayoutLineLeft,
+.firebugLayoutLineRight {
+    position: fixed;
+    width: 1px;
+    height: 100%;
+}
+
+.firebugLayoutLineTop,
+.firebugLayoutLineBottom {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px;
+    border-top: 1px solid #999999;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px;
+    border-left: 1px solid #999999;
+}
+</style>
+</head>
+
+<body class="snippets">
+<div id="header">
+<h1><a href="http://www.codekludge.com/">codekludge</a></h1>
+
+<div id="nav-main">
+<ul>
+<li id="nav-snippets"><a href="#">Questions</a></li>
+<li id="nav-snippets"><a href="#">Friends</a></li>
+<li id="nav-snippets"><a href="#">Ask</a></li>
+<li id="nav-about"><a class="youarehere" href="#">Update Profile</a></li>
+<li id="nav-snippets"><a href="#">Log out</a></li>
+</ul>
+</div>
+
+</div>
+
+<ul id="nav-secondary">
+<li><a class="youarehere" href="#">Resume</a></li>
+<li><a href="#">Codekludge activity</a></li><!-- recent activity(votes awarded added here), reputation graph -->
+<li><a href="#">Favorites</a></li><!-- favorite questions, favorite jobs -->
+<li><a href="#">Settings</a></li><!-- reputation, number of views, name, member for, last seen, website, location, Age, about -->
+</ul>
+
+<h2>Resume</h2>
+<div id="content">
+<h3> click resume text to edit </h3>
+<div id="main">
+<div style="padding-bottom:3em;">
+<a href="#" style="float:right; margin-right:1em; font-size:120%;">delete resume </a>
+</div>
+<p class="editable_textarea" id="paragraph_1">
+ P Lakshmi Narasimhan
+
+
+Career Profile
+
+
+        Seeking a challenging position that leverages my experience and also provides opportunities for professional and personal growth.
+</p>
+
+<p class="editable_textarea" id="paragraph_1">
+Areas of interest
+
+
+    *
+
+      usability focus of various programming languages
+    *
+
+      C++ standardization
+    *
+
+      Software engineering practices and dynamics of open source projects
+</p>
+
+<p class="editable_textarea" id="paragraph_1">
+Technical skills
+
+
+    *
+
+      I feel at home in a linux environment.working experience in UNIX variants like AIX, HP-UX and Windows based systems. Strong exposure to the GNU toolchain, UNIX-ish tools like awk, sed and shell scripts.
+    *
+
+      good knowledge of C and C++. This involves:
+          o finding out a bug and patching it in considerable time for a medium to large sized software system.
+          o knowledge of STL.
+
+
+    * proficiency in python. This involves:
+          o scripting all odd tasks which cannot be done using C/C++ or which do not have any performance constraints
+          o quick prototyping
+          o experience in the Django web framework
+
+
+    * TTCN-3
+    * javascript, jquery
+
+    * sparing knowledge of verilog and lisp.
+    * software tools : subversion, Rational Clearcase, Microsoft VSS, GNU Make, Trac.
+</p>
+
+<p class="editable_textarea" id="paragraph_1">
+Educational Qualification
+
+
+    *
+
+      B.Tech in Electronics and Communication engineering, SASTRA, Tanjavur, India, year of passing June 2006. GPA - 7.5/10.0.
+</p>
+
+<p class="editable_textarea" id="paragraph_1">
+Professional Experience Summary
+
+
+Employer: Huawei
+
+Designation: software engineer
+
+Period: July 2006 till date
+
+we are designing a distributed platform which provides system level services for telecom applications. We mostly work on C++ and implement storage facility, high availability, adapters, CORBA based request brokers and telecom service life cycle management.
+Occasionally shell and python are used for odd scripting jobs.
+Technologies used: Sqlite, distributed programming APIs in C++ similar to ACE, python, CORBA like proprietary system.
+
+
+   1. I work as a developer and tester of a telecom product dubbed ENIP.
+   2. It is a layer on top of the operating system which serves as a playground for various telecom services to run.
+   3. I work on the development of core services of ENIP. It involves various concepts of distributed programming like data persistence and synchronization(using sqlite), multi-threading etc.
+   4. I got a product consciousness award in 2007 for automating the build system(using python) and writing a program which automatically inserts debug logs in a C++ file(using C++).
+
+
+Organization: SASTRA Linux User Group
+
+Designation: Coordinator
+
+Period: June 2003 to May 2006
+
+   1. I was the Linux User Group coordinator of my college and my main activity was to advocate the use of Linux in the campus.
+   2. It involved giving a series of presentations and lectures during weekends on various technical and non technical aspects of Linux and open source.
+
+
+        contribution to various open source projects like django(www.djangoproject.com) and openc++ MOP(opencxx.sf.net).
+</p>
+
+<p class="editable_textarea" id="paragraph_1">
+Personal information
+
+
+    *
+
+      Email: badri DOT dilbert AT gmail DOT com
+    *
+
+      Snail mail: 82/1, Annayappa Garden, New Tippsandra, Bangalore-75.
+    *
+
+      Phone : 9986040652.
+
+</p>
+</p>
+</div>
+
+<div id="sidebar">
+
+<p>Welcome to <a href="http://www.djangosnippets.org/">Djangosnippets.org</a>, a site for users of the <a href="http://www.djangoproject.com/">Django web framework</a> to come together and share useful "snippets" of reusable code.</p>
+
+<p>If you're just here to browse, you can look through snippets organized <a href="http://www.djangosnippets.org/users/">by author</a>, <a href="http://www.djangosnippets.org/languages/">by language</a> or <a href="http://www.djangosnippets.org/tags/">by tag</a>. You can also have a look at the <a href="http://www.djangosnippets.org/popular/rated/">top-rated snippets</a> and the <a href="http://www.djangosnippets.org/popular/bookmarked/">most-bookmarked snippets</a>.</p>
+
+<p>If you'd like to contribute, <a href="http://www.djangosnippets.org/accounts/register/">sign up for a free account</a>
+and you'll be able to post snippets of your own, rate and bookmark
+snippets, and post comments. If you've got any questions, have a look
+at our <a href="http://www.djangosnippets.org/about/faq/">FAQ</a>.</p>
+
+<p><a rel="alternate" href="http://www.djangosnippets.org/feeds/latest/" type="application/atom+xml"><img src="template_files/feed-icon-10x10.png" alt=""> Feed of latest snippets</a></p>
+
+</div>
+</div>
+
+
+
+<div id="footer">
+<div class="chunk">
+<ul>
+<li>Powered by <a href="http://www.djangoproject.com/">Django</a>.</li>
+<li>Learn more <a href="#">about this site</a>.</li>
+<li>Read the <a href="#">FAQ</a>.</li>
+</ul>
+</div>
+<p id="copyright"><a href="#">Terms of service</a>.</p>
+<p id="copyright">Copyright(C)2009 <a href="#">codekludge</a>, content copyright <a href="#">Creative Commons</a>.</p>
+</div>
+<script src="template_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1299737-1";
+urchinTracker();
+</script>
+<script type="text/javascript" src="template_files/re_.js"></script>
+<script type="text/javascript">
+re_("v911s-9iq62562nu");
+</script>
+</body>
+</html>

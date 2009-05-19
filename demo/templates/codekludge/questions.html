@@ -1,0 +1,408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+<title>codekludge</title>
+<link rel="stylesheet" href="template_files/snippets.css" type="text/css">
+<link rel="stylesheet" href="template_files/pygments.css" type="text/css">
+
+<!-- <link rel="stylesheet" href="template_files/wmd.css" type="text/css"> -->
+<!-- <script type="text/javascript" src="template_files/jquery-1.2.6.min.js"></script> -->
+<!-- <script type="text/javascript" src="template_files/com.cnprog.editor.js"></script> -->
+<!-- <script type="text/javascript" src="template_files/showdown-min.js"></script> -->
+
+<script src="jquery-1.2.6.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.elastic-1.3.source.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        /***** Tell WMD not to start up automatically *****/
+        // Set this *before* you load wmd.js
+        // Otherwise you'll end up with two editors on top of each other!
+        wmd_options = { autostart: false };
+    
+        var instances = [];
+        
+        function createInstance() {
+        
+            /***** Make sure WMD has finished loading *****/
+            if (!Attacklab || !Attacklab.wmd) {
+                alert("WMD hasn't finished loading!");
+                return;
+            }
+        
+            // build the dom elements
+            var form = document.getElementById("myForm");
+    
+            var textarea = document.createElement("textarea");
+            textarea.style.width = "500px";
+	    textarea.style.height = "400px";
+	    textarea.class= "elastic";
+            textarea.value = "Insert your answer here.";
+            form.appendChild(textarea);    
+            var previewDiv = document.createElement("div");
+            form.appendChild(previewDiv);
+        
+            /***** build the preview manager *****/
+            var panes = {input:textarea, preview:previewDiv, output:null};
+            var previewManager = new Attacklab.wmd.previewManager(panes);
+        
+            /***** build the editor and tell it to refresh the preview after commands *****/
+            var editor = new Attacklab.wmd.editor(textarea,previewManager.refresh);
+        
+            // save everything so we can destroy it all later
+            instances.push({ta:textarea, div:previewDiv, ed:editor, pm:previewManager});
+        }
+        
+        function destroyInstance() {
+            var inst = instances.pop();
+        
+            if (inst) {
+        
+                /***** destroy the editor and preview manager *****/
+                inst.pm.destroy();
+                inst.ed.destroy();
+            
+                // remove the dom elements
+                inst.ta.parentNode.removeChild(inst.ta);
+                inst.div.parentNode.removeChild(inst.div);
+        
+            }
+        }
+        
+        
+    </script>
+
+<link rel="alternate" href="http://www.djangosnippets.org/feeds/latest/" type="application/atom+xml" title="Feed of latest snippets">
+
+<style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+
+.firebugHighlight {
+    z-index: 2147483647;
+    position: absolute;
+    background-color: #3875d7;
+}
+
+.firebugLayoutBoxParent {
+    z-index: 2147483647;
+    position: absolute;
+    background-color: transparent;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.firebugRulerH {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    background: url(chrome://firebug/skin/rulerH.png) repeat-x;
+    border-top: 1px solid #BBBBBB;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px solid #000000;
+}
+
+.firebugRulerV {
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 14px;
+    height: 100%;
+    background: url(chrome://firebug/skin/rulerV.png) repeat-y;
+    border-left: 1px solid #BBBBBB;
+    border-right: 1px solid #000000;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.firebugLayoutBoxOffset {
+    z-index: 2147483647;
+    position: absolute;
+    opacity: 0.8;
+}
+
+.firebugLayoutBoxMargin {
+    background-color: #EDFF64;
+}
+
+.firebugLayoutBoxBorder {
+    background-color: #666666;
+}
+
+.firebugLayoutBoxPadding {
+    background-color: SlateBlue;
+}
+
+.firebugLayoutBoxContent {
+    background-color: SkyBlue;
+}
+
+/*.firebugHighlightGroup .firebugLayoutBox {
+    background-color: transparent;
+}
+
+.firebugHighlightBox {
+    background-color: Blue !important;
+}*/
+
+.firebugLayoutLine {
+    z-index: 2147483647;
+    background-color: #000000;
+    opacity: 0.4;
+}
+
+.firebugLayoutLineLeft,
+.firebugLayoutLineRight {
+    position: fixed;
+    width: 1px;
+    height: 100%;
+}
+
+.firebugLayoutLineTop,
+.firebugLayoutLineBottom {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px;
+    border-top: 1px solid #999999;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px;
+    border-left: 1px solid #999999;
+}
+</style>
+</head>
+
+<body class="snippets">
+<div id="header">
+<h1><a href="http://www.codekludge.com/">codekludge</a></h1>
+
+<div id="nav-main">
+<ul>
+<li id="nav-snippets"><a class="youarehere" href="#">Questions</a></li>
+<li id="nav-snippets"><a href="#">Friends</a></li>
+<li id="nav-snippets"><a href="#">Ask</a></li>
+<li id="nav-about"><a href="#">Update Profile</a></li>
+<li id="nav-snippets"><a href="#">Log out</a></li>
+</ul>
+</div>
+
+</div>
+
+<ul id="nav-secondary">
+<li><a href="#">Search</a></li>
+<li><a href="#">Hottest</a></li>
+<li><a href="#">Unanswered</a></li>
+<li><a href="#">Edit your tags</a></li>
+</ul>
+
+<h2>Good programmer is the one that put code into production?</h2>
+<div id="content">
+<div id="main">
+
+<div class="question">
+<div class="favorite-question">
+<img width="32" height="31" src="favorite-off.png"/>
+<div class="favorite-count">
+2
+</div>
+</div>
+
+<div class="votes-side">
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-up.png"/>
+<div class="vote-count">
+5
+</div>
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-down.png"/>
+</div>
+
+<div class="question-text">
+Recently I found on a blog this:
+<blockquote>
+    " So I changed my mind and now my single reason that identify good programmers is "A good programmer is the one that put code in production" it means that good programmers makes programs that works and works for long time. Surely I really think that with DI, IoC, AOP you can create better programs, but the fundamental stuff is to put code in production. Bad programmers do not put a lot of code in production, because if they produce crap software, they will begin to spent so many time in maintenance, that they will not be able to ship anything anymore. Good programmer at other side, makes programs that work, they put them in production and then just leave them away, to return only when the customer needs another release. "
+</blockquote>
+So what do you think about this?
+</div>
+</div>
+
+<h3>4 Answers: </h3>
+
+<div class="answer">
+
+<div class="link-this">
+<a href="#">Link to this answer</a>
+</div>
+
+<div class="votes-side">
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-up.png"/>
+<div class="vote-count">
+5
+</div>
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-down.png"/>
+</div>
+
+<div class="answer-text">
+Sounds like it misses the common scenario: a bad programmer produces rubbish software which is band-aided into production, but then causes a maintenance nightmare once <i>it's already there</i>. Shipping <i>something</i> is easy. Shipping something which works, continues to work, and can be maintained over the long term is much harder and more important in most cases.
+
+It also ignores the fact that there are many reasons why code may not go into production, some of which are out of the programmer's control. Steve Yegge mentioned on the podcast that his previous projects at Google had been cancelled - does that make him a bad programmer?
+
+Yes, getting code into production is important. Doing it as quickly as possible is not the be-all and end-all though. Better to get something maintainable into production in 6 months than to rush something out in 5 months which then takes a year to actually turn into something useful... you've got to look at what's shipped over the course of many years to really get a good idea.
+
+EDIT: As Cletus points out, the post is really geared at "the technology isn't important; shipping is". I agree with that aspect. I just disagree with the overly-simplistic statement. Even if you take into account the extra part: "makes programs that works and works for long time" it isn't quite enough. While I certainly appreciate the YAGNI philosophy, I've seen plenty of code which just about works at the moment, but is a complete nightmare to change because no thought was put into future work. I'm not saying we need to go overboard on this, but again it's the long-term impact which bothers me. If the current code "works for a long time" because no-one dares to touch it, that's not good code.
+</div>
+<div class="answered-by">
+Answered 3 hours ago by <a href="#">Badri</a>, reputation: 3124.</a>
+</div>
+</div>
+
+<div class="answer">
+
+<div class="link-this">
+<a href="#">Link to this answer</a>
+</div>
+
+<div class="votes-side">
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-up.png"/>
+<div class="vote-count">
+3
+</div>
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-down.png"/>
+</div>
+
+<div class="answer-text">
+hmm...
+
+A programmer who puts out stable code into production is a good employee, but not necessarily a good programmer. A competent programmer yes, but a good programmer?
+
+A better programmer might indeed obsess over features and architecture. I don't want to get into "that" discussion, but as an extreme, this programmer might not be a good employee....but he might indeed be a great programmer..?
+
+The point is, I think that quote is far too simplistic to mean anything.
+</div>
+<div class="answered-by">
+Answered 2 hours and 3 min ago by <a href="#">Andy</a>, reputation: 122.</a>
+</div>
+</div>
+
+<div class="answer">
+
+<div class="link-this">
+<a href="#">Link to this answer</a>
+</div>
+
+<div class="votes-side">
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-up.png"/>
+<div class="vote-count">
+2
+</div>
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-down.png"/>
+</div>
+
+<div class="answer-text">
+This rant:
+<ul>
+      <li>simplifies the evaluation problem to "good" and "bad"; a switch is easier to make than a potentiometer, but the latter serves a greater purpose.</li>
+      <li>takes the programmer out of his context: he's just a member of a team. If he would get crappy specs, he would be a great spec-corrector if he put great code to work.</li>
+      <li>doesn't differentiate between working code and maintainable code</li>
+      <li>has a point that 'real life' programmers shouldn't go too academic too often (as I tend to do, but I'm working on it :) )</li>
+</ul>
+</div>
+<div class="answered-by">
+Answered 2 hours and 30 min ago by <a href="#">RaymondA</a>, reputation: 56.</a>
+</div>
+</div>
+
+<div class="answer">
+
+<div class="link-this">
+<a href="#">Link to this answer</a>
+</div>
+
+<div class="votes-side">
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-up.png"/>
+<div class="vote-count">
+-1
+</div>
+<img class="vote-arrow" width="40" height="25" src="vote-arrow-down.png"/>
+</div>
+
+<div class="answer-text">
+What?
+</div>
+<div class="answered-by">
+Answered 5 hours ago by <a href="#">Foobar</a>, reputation: 12.</a>
+</div>
+</div>
+
+    <p>
+      <a href="javascript:createInstance()">Answer this question</a> - 
+      <a href="javascript:destroyInstance()">Cancel</a>
+    </p>
+      <form id="myForm">
+      </form>
+	<div class="wmd-preview"></div>
+
+</div>
+<div id="sidebar">
+
+<p>Welcome to <a href="http://www.djangosnippets.org/">Djangosnippets.org</a>, a site for users of the <a href="http://www.djangoproject.com/">Django web framework</a> to come together and share useful "snippets" of reusable code.</p>
+
+<p>If you're just here to browse, you can look through snippets organized <a href="http://www.djangosnippets.org/users/">by author</a>, <a href="http://www.djangosnippets.org/languages/">by language</a> or <a href="http://www.djangosnippets.org/tags/">by tag</a>. You can also have a look at the <a href="http://www.djangosnippets.org/popular/rated/">top-rated snippets</a> and the <a href="http://www.djangosnippets.org/popular/bookmarked/">most-bookmarked snippets</a>.</p>
+
+<p>If you'd like to contribute, <a href="http://www.djangosnippets.org/accounts/register/">sign up for a free account</a>
+and you'll be able to post snippets of your own, rate and bookmark
+snippets, and post comments. If you've got any questions, have a look
+at our <a href="http://www.djangosnippets.org/about/faq/">FAQ</a>.</p>
+
+<p><a rel="alternate" href="http://www.djangosnippets.org/feeds/latest/" type="application/atom+xml"><img src="template_files/feed-icon-10x10.png" alt=""> Feed of latest snippets</a></p>
+
+</div>
+</div>
+
+
+
+<div id="footer">
+<div class="chunk">
+<ul>
+<li>Powered by <a href="http://www.djangoproject.com/">Django</a>.</li>
+<li>Learn more <a href="#">about this site</a>.</li>
+<li>Read the <a href="#">FAQ</a>.</li>
+</ul>
+</div>
+<p id="copyright"><a href="#">Terms of service</a>.</p>
+<p id="copyright">Copyright(C)2009 <a href="#">codekludge</a>, content copyright <a href="#">Creative Commons</a>.</p>
+</div>
+<script src="template_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1299737-1";
+urchinTracker();
+</script>
+<script type="text/javascript" src="template_files/re_.js"></script>
+<script type="text/javascript">
+re_("v911s-9iq62562nu");
+</script>
+<script type="text/javascript" src="template_files/wmd-new.js"></script>
+
+</body>
+</html>

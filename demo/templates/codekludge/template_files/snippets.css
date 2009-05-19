@@ -1,0 +1,563 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: DimGray;
+    background: #fff;
+    font-family: Trebuchet MS,Helvetica,sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: -0.5 px;
+    font-size: 100%;
+}
+
+.question-link {
+    color: #FF9933;
+}
+
+a:link{
+    color: rgb(255, 47, 47);
+    text-decoration: none;
+}
+
+a:visited{
+    color: rgb(255, 97, 97);
+    text-decoration: none;
+}
+
+a:active {
+    color: rgb(255, 47, 47);
+    text-decoration: none;
+}
+
+a img {
+    border: 0;
+}
+
+#header {
+    background: white bottom left repeat-x;
+    height: 84px;
+    overflow: auto;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+#header h1 {
+    float: left;
+    margin-left: 1em;
+    display: inline;
+    height: 70px;
+    width: 236px;
+}
+
+#header h1 a {
+    display: block;
+    text-decoration: none;
+    text-indent: -5000px;
+    height: 84px;
+    width: 307px;
+    background: white url(codekludge.png) top left;
+}
+
+#header #nav-main {
+    float: right;
+    text-align: right;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 45px;
+    margin-right: 1em;
+    display: inline;
+}
+
+#header #nav-main a {
+    color: rgb(255,47,47);
+}
+
+#header #nav-main span {
+    float: left;
+    padding-top: 5px;
+    margin-right: 0.75em;
+}
+
+#header #nav-main #logout {
+    display: block;
+    margin: 3px 0.75em 0 0.5em;
+    height: 19px;
+    width: 80px;
+    background: url(../img/sign_out.gif) top left no-repeat;
+    text-align: center;
+    padding-top: 2px;
+}
+
+#header #nav-main #logout a {
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#header #nav-main ul {
+    list-style-type: none;
+    float: left;
+    padding-top: 3px;
+}
+
+#header #nav-main ul li {
+    text-align: center;
+    float: left;
+    display: inline;
+    padding-bottom: 6px;
+    padding-right: 10px;
+    margin: 0 2px;
+    background: url(../img/nav_tab_inactive.gif) top left no-repeat;
+}
+
+
+body.snippets #header #nav-main ul li#nav-snippets, body.account #header #nav-main ul li#nav-account, body.about #header #nav-main ul li#nav-about {
+    background: url(../img/nav_tab.gif) top left no-repeat;
+}
+
+#header #nav-main ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 115%;
+}
+
+
+#header #nav-main ul li a.youarehere {
+    background: #FFFF99;
+}
+
+#nav-secondary li a.youarehere {
+    background: #FFFF99;
+}
+
+#sidebar ul li a.youarehere {
+    background: #FFFF99;
+}
+
+
+#header #nav-main ul li a:hover
+{
+    background: khaki;
+}
+
+#header #nav-main ul li a:focus
+{
+    background: khaki;
+}
+
+
+#nav-secondary {
+    list-style-type: none;
+    float: right;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    display: inline;
+}
+
+#nav-secondary li {
+    display: inline;
+    padding-right: 1em;
+}
+
+#nav-secondary li a {
+    font-weight: bold;
+}
+
+#nav-secondary li a:hover {
+    background: khaki;
+}
+
+#nav-secondary li a:focus {
+    background: khaki;
+}
+
+h2 {
+    font-size: 1.7em;
+    color: #000;
+    margin: 40px 10px 0 20px;
+}
+
+#content {
+    border-top: 1px solid #ccc;
+    margin: 0 20px 2em 20px;
+}
+
+#content #main {
+    width: 65%;
+    float: left;
+    border-right: 1px solid #ccc;
+    padding-bottom: 4em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#content #main div.highlight {
+    width: 90%;
+    overflow: auto;
+    padding: 0.5em;
+}
+
+
+#content #main div.highlight table td.linenos {
+    padding-right: 1em;
+}
+
+#content #main ul, #content #main ol {
+    margin: 1em 0 1em 10px;
+}
+
+#content #main ul {
+    list-style-type: none;
+}
+
+#content #main li {
+    padding-top: 0.5em; 
+    margin-right: 1em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px dotted #ccc;
+}
+
+#content #main dl {
+    margin-top: 1em;
+}
+
+#content #main dt {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+#content #main dt label {
+    font-weight: bold;
+}
+
+#content #main dd {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+#content #main dd textarea {
+    width: 80%;
+    height: 200px;
+}
+
+#content #main h3 {
+    margin: 1em 0;
+}
+
+#content #main p {
+    margin: 1em 1em 1em 0;
+}
+
+#content #main .error {
+    color: red;
+}
+
+#content #sidebar {
+    width: 30%;
+    float: left;
+}
+
+#content #sidebar p {
+    margin: 0.5em 1em;
+}
+
+#content #sidebar dl {
+    margin: 0.5em 1em;
+}
+
+#content #sidebar h1, #content #sidebar h2 {
+    font-size: 100%;
+    margin: 0.5em 1em;
+}
+
+#content #sidebar pre, #content #sidebar blockquote {
+    margin: 1em 0 1em 40px;
+}
+
+#content #sidebar dl dt, #content #sidebar dl dd {
+    float: left;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#content #sidebar dl dt {
+    clear: left;
+    font-weight: bold;
+}
+
+#content #sidebar h3 {
+    clear: left;
+    font-size: 110%;
+    margin: 0.5em 1em;
+    padding-top: 1em;
+}
+
+#content #sidebar ul {
+    clear: left;
+    margin: 0.5em 1em;
+    list-style-type: none;
+}
+
+#content #sidebar ol {
+    clear: left;
+    margin-left: 4em;
+}
+
+#content #sidebar li {
+    margin-bottom: 0.5em;
+}
+
+#comments {
+    clear: left;
+}
+
+#comments h2 {
+    border-bottom: 1px solid #ccc;
+}
+
+#comments dl {
+    margin: 1em 0 1em 20px;
+    width: 40%;
+}
+
+#comments dl dt {
+    margin-bottom: 1em;
+}
+
+#comments dl dd {
+    margin-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #ccc;
+}
+
+#comments dl dd p, #comments dl dd ul, #comments dl dd ol, #comments dl dd blockquote {
+    margin: 1em 0;
+}
+
+#comments dl dd li, #comments dl dd blockquote {
+    margin-left: 1em;
+}
+
+#comments dl dd ul li {
+    list-style-type: none;
+}
+
+#comments dl dd ol li {
+    list-style-type: decimal;
+}
+
+#comments form dl {
+    margin: 1em 0 1em 20px;
+}
+
+#comments form dl dt {
+    margin-bottom: 0;
+}
+
+#comments form dl dd {
+    margin-top: 0;
+    border-bottom: 0;
+}
+
+#comments form p {
+    margin: 1em 0 1em 20px;
+}
+
+#footer {
+    clear: left;
+    background-color: white;
+    color: DimGray;
+    margin-top: 2em;
+    width: 100%;
+    overflow: auto;
+    border-top: 1px solid #ccc;
+}
+
+#footer a:link, a:visited,  a:active {
+    color: rgb(255, 47,47);
+}
+
+#footer div.chunk {
+    margin-top: 1em;
+    margin-left: 20px;
+    /* width: 15%; */
+    float: left;
+    margin-bottom: 0em;
+}
+
+#footer div.chunk h3 {
+    font-size: 110%;
+}
+
+#footer div.chunk ul {
+    list-style-type: none;
+}
+
+#footer div.chunk ul li{
+    display: inline;
+}
+
+#footer #copyright {
+    clear: left;
+    padding-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 20px;
+}
+
+.answers {
+    background: #FFFF99 none repeat scroll 0 0;
+    float: right;
+    height:40 px;
+    width: 40 px;
+    margin: 0 3px 0 0;
+    padding: 5px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.oneanswer {
+    background: #FFFF99 none repeat scroll 0 0;
+    float: right;
+    margin: 0 3px 0 0;
+    padding-left: 9px;
+    padding-right: 9px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.unanswered {
+    background: #CCFF66 none repeat scroll 0 0;
+    float: right;
+    height:40 px;
+    width: 40 px;
+    margin: 0 3px 0 0;
+    padding: 5px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.votes {
+    background: #FFFFFF none repeat scroll 0 0;
+    float: left;
+    height:40 px;
+    width: 40 px;
+    margin: 0 3px 0 0;
+    padding: 5px;
+    text-align: center;
+    font-size: 150%;
+    color: #C8C8C8;
+}
+
+
+.num {
+     font-size: 70%;
+}
+
+.question-text {
+    width: 500 px;
+    font-weight:normal;
+    font-size: 120%;
+    margin-left: 4em;
+    margin-right:2em;
+    padding-bottom: 2em;
+}
+
+.question {
+    padding-right: 2em;
+    border-bottom: 3px solid #ccc;
+}
+
+.favorite-question {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    float: left;
+}
+
+.vote-arrow {
+    cursor: pointer;
+    width: 40px;
+    height: 25px;
+}
+
+.votes-side {
+    width: 40px;
+    height: 120px;
+    float: right;
+}
+
+.vote-count {
+    font-size: 200%;
+    text-align: center;
+    font-weight: bold;
+    float:left;
+    padding-left:10px;
+}
+
+.favorite-count {
+    font-size: 100%;
+    text-align: right;
+    font-weight: bold;
+    float:left;
+    padding: 1px 1px 1px 10px;
+}
+
+.answer-text {
+    width: 500 px;
+    font-weight:normal;
+    font-size: 120%;
+    margin-left: 4em;
+    margin-right:2em;
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+.answer {
+    padding-right: 2em;
+    /* border-top: 2px dashed #ccc; */
+    border-bottom: 2px dashed #ccc;
+}
+
+.link-this {
+    font-size: 80%;
+    text-align: right;
+    font-weight: bold;
+    float:left;
+    padding: 1px 1px 1px 10px;
+}
+
+.answered-by {
+    /* float:left; */
+    margin-left: 4em;
+    padding-bottom: 1em;
+}
+
+.answer-text ul{
+    list-style-type: circle;
+}
+
+.date-block {
+    background: #FFFFFF none repeat scroll 0 0;
+    float: left;
+    height:40 px;
+    width: 40 px;
+    margin: 0 3px 0 0;
+    padding: 5px;
+    text-align: center;
+    font-size: 150%;
+    color: #C8C8C8;
+}
+
+.bronze {
+    background: #CC9900;
+    width: 12px;
+    height:12px;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+}

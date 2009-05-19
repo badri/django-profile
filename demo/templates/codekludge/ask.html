@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+<title>codekludge</title>
+<link rel="stylesheet" href="template_files/snippets.css" type="text/css">
+<link rel="stylesheet" href="template_files/pygments.css" type="text/css">
+
+<!-- <link rel="stylesheet" href="template_files/wmd.css" type="text/css"> -->
+<!-- <script type="text/javascript" src="template_files/jquery-1.2.6.min.js"></script> -->
+<!-- <script type="text/javascript" src="template_files/com.cnprog.editor.js"></script> -->
+<!-- <script type="text/javascript" src="template_files/showdown-min.js"></script> -->
+
+<script src="jquery-1.2.6.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.elastic-1.3.source.js" type="text/javascript" charset="utf-8"></script>
+<link rel="alternate" href="http://www.djangosnippets.org/feeds/latest/" type="application/atom+xml" title="Feed of latest snippets">
+
+<style type="text/css" charset="utf-8">/* See license.txt for terms of usage */
+
+.firebugHighlight {
+    z-index: 2147483647;
+    position: absolute;
+    background-color: #3875d7;
+}
+
+.firebugLayoutBoxParent {
+    z-index: 2147483647;
+    position: absolute;
+    background-color: transparent;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.firebugRulerH {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    background: url(chrome://firebug/skin/rulerH.png) repeat-x;
+    border-top: 1px solid #BBBBBB;
+    border-right: 1px dashed #BBBBBB;
+    border-bottom: 1px solid #000000;
+}
+
+.firebugRulerV {
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: 14px;
+    height: 100%;
+    background: url(chrome://firebug/skin/rulerV.png) repeat-y;
+    border-left: 1px solid #BBBBBB;
+    border-right: 1px solid #000000;
+    border-bottom: 1px dashed #BBBBBB;
+}
+
+.overflowRulerX > .firebugRulerV {
+    left: 0;
+}
+
+.overflowRulerY > .firebugRulerH {
+    top: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+.firebugLayoutBoxOffset {
+    z-index: 2147483647;
+    position: absolute;
+    opacity: 0.8;
+}
+
+.firebugLayoutBoxMargin {
+    background-color: #EDFF64;
+}
+
+.firebugLayoutBoxBorder {
+    background-color: #666666;
+}
+
+.firebugLayoutBoxPadding {
+    background-color: SlateBlue;
+}
+
+.firebugLayoutBoxContent {
+    background-color: SkyBlue;
+}
+
+/*.firebugHighlightGroup .firebugLayoutBox {
+    background-color: transparent;
+}
+
+.firebugHighlightBox {
+    background-color: Blue !important;
+}*/
+
+.firebugLayoutLine {
+    z-index: 2147483647;
+    background-color: #000000;
+    opacity: 0.4;
+}
+
+.firebugLayoutLineLeft,
+.firebugLayoutLineRight {
+    position: fixed;
+    width: 1px;
+    height: 100%;
+}
+
+.firebugLayoutLineTop,
+.firebugLayoutLineBottom {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+}
+
+.firebugLayoutLineTop {
+    margin-top: -1px;
+    border-top: 1px solid #999999;
+}
+
+.firebugLayoutLineRight {
+    border-right: 1px solid #999999;
+}
+
+.firebugLayoutLineBottom {
+    border-bottom: 1px solid #999999;
+}
+
+.firebugLayoutLineLeft {
+    margin-left: -1px;
+    border-left: 1px solid #999999;
+}
+</style>
+</head>
+
+<body class="snippets">
+<div id="header">
+<h1><a href="http://www.codekludge.com/">codekludge</a></h1>
+
+<div id="nav-main">
+<ul>
+<li id="nav-snippets"><a href="#">Questions</a></li>
+<li id="nav-snippets"><a href="#">Friends</a></li>
+<li id="nav-snippets"><a class="youarehere" href="#">Ask</a></li>
+<li id="nav-about"><a href="#">Update Profile</a></li>
+<li id="nav-snippets"><a href="#">Log out</a></li>
+</ul>
+</div>
+
+</div>
+
+<ul id="nav-secondary">
+<li><a href="#">Search</a></li>
+<li><a href="#">Hottest</a></li>
+<li><a href="#">Unanswered</a></li>
+<li><a href="#">Edit your tags</a></li>
+</ul>
+
+<h2>Ask a question</h2>
+<div id="content">
+<div id="main">
+
+
+      <form id="myForm">
+	<h3> Title: </h3>
+	<textarea id="question-title" style="width:500px; height:20px; margin-bottom:2em;" class="wmd-ignore"></textarea>
+	<textarea id="question-content" style="width: 500px; height: 200px;">*This* is a minimal example.</textarea>
+	<div class="wmd-preview"></div>
+	<h3> Tags: </h3>
+	<textarea id="question-tags" style="width:500px; height:20px;" class="wmd-ignore"></textarea>
+	<div>
+	<input type="submit" tabindex="120" value="Ask Your Question"/>
+	</div>
+      </form>
+</div>
+
+<div id="sidebar">
+
+<p>Welcome to <a href="http://www.djangosnippets.org/">Djangosnippets.org</a>, a site for users of the <a href="http://www.djangoproject.com/">Django web framework</a> to come together and share useful "snippets" of reusable code.</p>
+
+<p>If you're just here to browse, you can look through snippets organized <a href="http://www.djangosnippets.org/users/">by author</a>, <a href="http://www.djangosnippets.org/languages/">by language</a> or <a href="http://www.djangosnippets.org/tags/">by tag</a>. You can also have a look at the <a href="http://www.djangosnippets.org/popular/rated/">top-rated snippets</a> and the <a href="http://www.djangosnippets.org/popular/bookmarked/">most-bookmarked snippets</a>.</p>
+
+<p>If you'd like to contribute, <a href="http://www.djangosnippets.org/accounts/register/">sign up for a free account</a>
+and you'll be able to post snippets of your own, rate and bookmark
+snippets, and post comments. If you've got any questions, have a look
+at our <a href="http://www.djangosnippets.org/about/faq/">FAQ</a>.</p>
+
+<p><a rel="alternate" href="http://www.djangosnippets.org/feeds/latest/" type="application/atom+xml"><img src="template_files/feed-icon-10x10.png" alt=""> Feed of latest snippets</a></p>
+
+</div>
+</div>
+
+
+
+<div id="footer">
+<div class="chunk">
+<ul>
+<li>Powered by <a href="http://www.djangoproject.com/">Django</a>.</li>
+<li>Learn more <a href="#">about this site</a>.</li>
+<li>Read the <a href="#">FAQ</a>.</li>
+</ul>
+</div>
+<p id="copyright"><a href="#">Terms of service</a>.</p>
+<p id="copyright">Copyright(C)2009 <a href="#">codekludge</a>, content copyright <a href="#">Creative Commons</a>.</p>
+</div>
+<script src="template_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1299737-1";
+urchinTracker();
+</script>
+<script type="text/javascript" src="template_files/re_.js"></script>
+<script type="text/javascript">
+re_("v911s-9iq62562nu");
+</script>
+<script type="text/javascript" src="template_files/wmd-new.js"></script>
+
+</body>
+</html>
